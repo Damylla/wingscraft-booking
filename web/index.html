@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#10110f">
+  <title>Reserve a session · Wingscraft Booking</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar container">
+    <a class="brand" href="/" aria-label="Wingscraft Booking home">
+      <span class="brand-symbol" aria-hidden="true">✳</span>
+      <span>wingscraft</span>
+      <span class="brand-light">/ booking</span>
+    </a>
+    <div class="top-actions">
+      <span class="online"><i></i> Booking studio</span>
+      <a class="quiet-link" href="/admin">Admin <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero" id="hero-section">
+      <div class="hero-ambient" aria-hidden="true">
+        <span class="ambient-glow aurora-core"></span>
+        <span class="ambient-glow ambient-primary"></span>
+        <span class="ambient-glow ambient-secondary"></span>
+        <span class="ambient-beam"></span>
+      </div>
+
+      <div class="time-orbit-stage" aria-hidden="true">
+        <div class="orbit-parallax-wrap">
+          <div class="orb-halo"></div>
+          <svg class="time-orbit-svg" viewBox="0 0 560 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="orbitArcPrimary" x1="0%" y1="15%" x2="100%" y2="85%">
+                <stop offset="0%" stop-color="#c8ab7c" stop-opacity="0.02"/>
+                <stop offset="35%" stop-color="#c8ab7c" stop-opacity="0.48"/>
+                <stop offset="68%" stop-color="#f4ebdd" stop-opacity="0.62"/>
+                <stop offset="100%" stop-color="#987b57" stop-opacity="0.04"/>
+              </linearGradient>
+              <linearGradient id="orbitArcSecondary" x1="100%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#987b57" stop-opacity="0.02"/>
+                <stop offset="45%" stop-color="#c8ab7c" stop-opacity="0.34"/>
+                <stop offset="80%" stop-color="#c8ab7c" stop-opacity="0.18"/>
+                <stop offset="100%" stop-color="#987b57" stop-opacity="0"/>
+              </linearGradient>
+              <linearGradient id="orbitArcOuter" x1="15%" y1="0%" x2="85%" y2="100%">
+                <stop offset="0%" stop-color="#c8ab7c" stop-opacity="0"/>
+                <stop offset="50%" stop-color="#987b57" stop-opacity="0.24"/>
+                <stop offset="100%" stop-color="#c8ab7c" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <!-- Outer partially visible time-horizon ellipse -->
+            <ellipse cx="280" cy="210" rx="255" ry="102" transform="rotate(-18 280 210)" stroke="url(#orbitArcOuter)" stroke-width="1" stroke-dasharray="6 10"/>
+            <!-- Secondary inclined elliptical orbit -->
+            <ellipse cx="280" cy="210" rx="205" ry="78" transform="rotate(22 280 210)" stroke="url(#orbitArcSecondary)" stroke-width="1.15"/>
+            <!-- Primary time orbit ellipse -->
+            <ellipse cx="280" cy="210" rx="228" ry="88" transform="rotate(-18 280 210)" stroke="url(#orbitArcPrimary)" stroke-width="1.35"/>
+          </svg>
+
+          <!-- Tilted orbital plane carrying the single slow-moving bronze light node -->
+          <div class="orbit-plane">
+            <div class="orbit-node-track">
+              <span class="orbit-light-node"></span>
+            </div>
+          </div>
+
+          <div class="hero-star">✳</div>
+        </div>
+      </div>
+
+      <div class="hero-content">
+        <div class="eyebrow hero-eyebrow"><span class="tiny-line"></span> SIMPLE. PERSONAL. SEAMLESS.</div>
+        <h1>Make time for<br><em>what matters.</em></h1>
+        <p class="hero-lead">A thoughtfully crafted way to schedule your next session. Choose a service, select a date and time that works for you, and confirm in moments.</p>
+      </div>
+    </section>
+
+    <section class="booking-shell" aria-labelledby="booking-heading">
+      <div class="section-top">
+        <div>
+          <span class="eyebrow small">THE BOOKING EXPERIENCE</span>
+          <h2 id="booking-heading">Let's find your moment.</h2>
+        </div>
+        <div class="step-counter" id="step-label" aria-live="polite">STEP 01 / 04</div>
+      </div>
+
+      <ol class="step-indicator" id="step-indicator" aria-label="Booking steps">
+        <li class="step-pill active" data-step="1">
+          <button type="button" class="step-pill-btn" data-step-target="1" aria-current="step">
+            <span class="step-pill-num">01</span>
+            <span class="step-pill-text">Select Service</span>
+          </button>
+        </li>
+        <li class="step-pill" data-step="2">
+          <button type="button" class="step-pill-btn" data-step-target="2" disabled>
+            <span class="step-pill-num">02</span>
+            <span class="step-pill-text">Date &amp; Time</span>
+          </button>
+        </li>
+        <li class="step-pill" data-step="3">
+          <button type="button" class="step-pill-btn" data-step-target="3" disabled>
+            <span class="step-pill-num">03</span>
+            <span class="step-pill-text">Your Details</span>
+          </button>
+        </li>
+        <li class="step-pill" data-step="4">
+          <button type="button" class="step-pill-btn" data-step-target="4" disabled>
+            <span class="step-pill-num">04</span>
+            <span class="step-pill-text">Review &amp; Confirm</span>
+          </button>
+        </li>
+      </ol>
+
+      <div class="progress" aria-hidden="true"><span id="progress-fill"></span></div>
+
+      <div id="notice" class="notice" role="alert" hidden></div>
+
+      <!-- STEP 1: SELECT SERVICE -->
+      <div id="step1" class="step">
+        <div class="step-header-row">
+          <div class="field-label">01 / SELECT A SERVICE</div>
+          <span class="step-subhint" id="service-count-label"></span>
+        </div>
+        <div id="services" class="service-grid" role="group" aria-label="Available services">
+          <div class="loading-skeleton-grid">
+            <div class="skeleton-card"></div>
+            <div class="skeleton-card"></div>
+            <div class="skeleton-card"></div>
+          </div>
+        </div>
+        <div class="bottom-actions">
+          <span id="step1-status">Choose a service to continue</span>
+          <button id="next1" type="button" class="btn primary" disabled>Continue to Date &amp; Time <span aria-hidden="true">→</span></button>
+        </div>
+      </div>
+
+      <!-- STEP 2: CHOOSE DATE & TIME -->
+      <div id="step2" class="step" hidden>
+        <div class="step-header-row">
+          <div class="field-label">02 / CHOOSE DATE &amp; TIME</div>
+          <div class="selected-service-bar">
+            <span class="selected-service" id="selected-service"></span>
+            <button type="button" class="text-action" id="change-service-btn">Change service</button>
+          </div>
+        </div>
+
+        <div class="date-layout">
+          <div class="calendar-card">
+            <div class="calendar-header">
+              <div>
+                <label class="input-label" id="calendar-label" for="date">Select a date</label>
+                <div class="cal-month-title" id="cal-month-label" aria-live="polite">Loading…</div>
+              </div>
+              <div class="cal-nav">
+                <button type="button" class="cal-nav-btn" id="cal-prev" aria-label="Previous month">←</button>
+                <button type="button" class="cal-nav-btn cal-today-btn" id="cal-today" title="Jump to current month">Today</button>
+                <button type="button" class="cal-nav-btn" id="cal-next" aria-label="Next month">→</button>
+              </div>
+            </div>
+
+            <input type="date" id="date" class="sr-only" required aria-label="Reservation date (YYYY-MM-DD)">
+
+            <div class="cal-weekdays" aria-hidden="true">
+              <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+            </div>
+            <div id="cal-grid" class="cal-grid" role="grid" aria-labelledby="calendar-label"></div>
+
+            <div class="cal-legend" aria-label="Calendar key">
+              <span class="legend-item"><i class="legend-dot available"></i> Available</span>
+              <span class="legend-item"><i class="legend-dot selected"></i> Selected</span>
+              <span class="legend-item"><i class="legend-dot unavailable"></i> Unavailable</span>
+            </div>
+            <p class="hint">All times are displayed in the studio's local timezone.</p>
+          </div>
+
+          <div class="time-card">
+            <div class="time-card-header">
+              <div>
+                <div class="input-label">Available times</div>
+                <div class="time-date-subtitle" id="slot-date-heading">Select a date on the calendar</div>
+              </div>
+              <span class="slot-count-badge" id="slot-count-badge" hidden></span>
+            </div>
+
+            <div class="slot-grid" id="slots" role="group" aria-label="Available time slots">
+              <p class="hint">Select an available date to view open time slots.</p>
+            </div>
+
+            <div class="selected-slot-banner" id="selected-slot-banner" hidden>
+              <span class="slot-banner-dot" aria-hidden="true"></span>
+              <span id="selected-slot-text"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bottom-actions">
+          <button type="button" class="btn ghost" id="back2"><span aria-hidden="true">←</span> Back</button>
+          <div class="action-right-group">
+            <span class="action-hint" id="step2-status">Select a time slot to continue</span>
+            <button type="button" id="next2" class="btn primary" disabled>Continue to Details <span aria-hidden="true">→</span></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 3: ENTER CUSTOMER DETAILS -->
+      <div id="step3" class="step" hidden>
+        <div class="field-label">03 / ENTER CUSTOMER DETAILS</div>
+        <div class="details-layout">
+          <div class="customer-form" id="details-panel">
+            <div class="form-field">
+              <label for="name">Full name <span class="req-star" aria-hidden="true">*</span></label>
+              <input id="name" name="customer_name" autocomplete="name" required minlength="1" maxlength="100" placeholder="e.g. Clara Vance" aria-describedby="name-error">
+              <span class="field-error" id="name-error" role="alert" hidden></span>
+            </div>
+
+            <div class="form-field">
+              <label for="email">Email address <span class="req-star" aria-hidden="true">*</span></label>
+              <input id="email" name="customer_email" type="email" autocomplete="email" maxlength="254" required placeholder="clara@example.com" aria-describedby="email-error">
+              <span class="field-error" id="email-error" role="alert" hidden></span>
+            </div>
+
+            <p class="hint">Your email is used to identify your reservation. No online payment is required.</p>
+
+            <div class="bottom-actions form-actions">
+              <button type="button" class="btn ghost" id="back3"><span aria-hidden="true">←</span> Back</button>
+              <button type="button" class="btn primary" id="next3">Review Booking <span aria-hidden="true">→</span></button>
+            </div>
+          </div>
+
+          <aside class="summary-card" aria-label="Reservation summary preview">
+            <span class="eyebrow small">YOUR RESERVATION</span>
+            <h3>A little time,<br>a lot of possibility.</h3>
+            <dl id="summary"></dl>
+          </aside>
+        </div>
+      </div>
+
+      <!-- STEP 4: REVIEW AND CONFIRM -->
+      <div id="step4" class="step" hidden>
+        <div class="field-label">04 / REVIEW &amp; CONFIRM</div>
+        <form id="booking-form" class="review-layout" novalidate>
+          <div class="review-card">
+            <div class="review-card-top">
+              <div>
+                <span class="eyebrow small">FINAL REVIEW</span>
+                <h3>Verify your reservation details</h3>
+              </div>
+              <span class="review-badge">Ready to confirm</span>
+            </div>
+
+            <div class="review-sections">
+              <div class="review-row">
+                <div class="review-info">
+                  <span class="review-label">Selected Service</span>
+                  <strong class="review-value" id="review-service">—</strong>
+                  <span class="review-meta" id="review-duration">—</span>
+                </div>
+                <button type="button" class="text-action" data-edit-step="1">Change</button>
+              </div>
+
+              <div class="review-row">
+                <div class="review-info">
+                  <span class="review-label">Date &amp; Time</span>
+                  <strong class="review-value" id="review-datetime">—</strong>
+                  <span class="review-meta">Studio local time</span>
+                </div>
+                <button type="button" class="text-action" data-edit-step="2">Change</button>
+              </div>
+
+              <div class="review-row">
+                <div class="review-info">
+                  <span class="review-label">Guest Information</span>
+                  <strong class="review-value" id="review-name">—</strong>
+                  <span class="review-meta" id="review-email">—</span>
+                </div>
+                <button type="button" class="text-action" data-edit-step="3">Edit</button>
+              </div>
+            </div>
+
+            <div class="review-Policy">
+              <span class="policy-dot" aria-hidden="true">✳</span>
+              <p>By confirming, your session slot is immediately locked in our calendar. Need to reschedule later? Contact the studio with your booking reference.</p>
+            </div>
+          </div>
+
+          <div class="bottom-actions">
+            <button type="button" class="btn ghost" id="back4"><span aria-hidden="true">←</span> Back to Details</button>
+            <button type="submit" class="btn primary btn-confirm" id="confirm">Confirm booking <span aria-hidden="true">↗</span></button>
+          </div>
+        </form>
+      </div>
+
+      <!-- CONFIRMED VIEW -->
+      <div id="success" class="success-view" hidden>
+        <div class="success-icon-wrap">
+          <div class="success-icon" aria-hidden="true">✓</div>
+        </div>
+        <span class="eyebrow small">BOOKING CONFIRMED</span>
+        <h2>You're all set.</h2>
+        <p>Your session has been reserved and locked into the studio schedule. Please save your confirmation details below.</p>
+        <div class="confirmation" id="confirmation"></div>
+        <div class="success-actions">
+          <button type="button" class="btn primary" id="restart">Book another session <span aria-hidden="true">→</span></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="bottom-note">
+      <div class="eyebrow small">BUILT WITH INTENTION</div>
+      <h2>Simple by design.<br><em>Thoughtful by nature.</em></h2>
+      <p>Independent booking experience, crafted with Wingscraft's signature minimal aesthetic.</p>
+    </section>
+  </main>
+
+  <footer class="container footer">
+    <span>© Wingscraft Booking</span>
+    <span>Independent booking engine · Wingscraft Studio</span>
+  </footer>
+</body>
+</html>
